@@ -105,17 +105,15 @@ DIST_COMMON = $(srcdir)/Makefile.am $(noinst_HEADERS) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-LIBRARIES = $(noinst_LIBRARIES)
-ARFLAGS = cru
-AM_V_AR = $(am__v_AR_@AM_V@)
-am__v_AR_ = $(am__v_AR_@AM_DEFAULT_V@)
-am__v_AR_0 = @echo "  AR      " $@;
-am__v_AR_1 = 
-libb64_a_AR = $(AR) $(ARFLAGS)
-libb64_a_LIBADD =
+LTLIBRARIES = $(noinst_LTLIBRARIES)
+libb64_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libb64_a_OBJECTS = src/cdecode.$(OBJEXT) src/cencode.$(OBJEXT)
-libb64_a_OBJECTS = $(am_libb64_a_OBJECTS)
+am_libb64_la_OBJECTS = src/cdecode.lo src/cencode.lo
+libb64_la_OBJECTS = $(am_libb64_la_OBJECTS)
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -131,15 +129,11 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = src/$(DEPDIR)/cdecode.Po \
-	src/$(DEPDIR)/cencode.Po
+am__depfiles_remade = src/$(DEPDIR)/cdecode.Plo \
+	src/$(DEPDIR)/cencode.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-AM_V_lt = $(am__v_lt_@AM_V@)
-am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
-am__v_lt_0 = --silent
-am__v_lt_1 = 
 LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
 	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
@@ -156,8 +150,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libb64_a_SOURCES)
-DIST_SOURCES = $(libb64_a_SOURCES)
+SOURCES = $(libb64_la_SOURCES)
+DIST_SOURCES = $(libb64_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -219,7 +213,7 @@ DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 DHT_CFLAGS = @DHT_CFLAGS@
 DHT_LIBS = @DHT_LIBS@
-DHT_LIBS_QT = @DHT_LIBS_QT@
+DHT_LIBS_QMAKE = @DHT_LIBS_QMAKE@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -262,27 +256,27 @@ LIBAPPINDICATOR_LIBS = @LIBAPPINDICATOR_LIBS@
 LIBAPPINDICATOR_MINIMUM = @LIBAPPINDICATOR_MINIMUM@
 LIBB64_CFLAGS = @LIBB64_CFLAGS@
 LIBB64_LIBS = @LIBB64_LIBS@
-LIBB64_LIBS_QT = @LIBB64_LIBS_QT@
+LIBB64_LIBS_QMAKE = @LIBB64_LIBS_QMAKE@
 LIBCURL_CFLAGS = @LIBCURL_CFLAGS@
 LIBCURL_LIBS = @LIBCURL_LIBS@
 LIBEVENT_CFLAGS = @LIBEVENT_CFLAGS@
-LIBEVENT_INCLUDEPATH_QT = @LIBEVENT_INCLUDEPATH_QT@
+LIBEVENT_INCLUDEPATH_QMAKE = @LIBEVENT_INCLUDEPATH_QMAKE@
 LIBEVENT_LIBS = @LIBEVENT_LIBS@
-LIBEVENT_LIBS_QT = @LIBEVENT_LIBS_QT@
+LIBEVENT_LIBS_QMAKE = @LIBEVENT_LIBS_QMAKE@
 LIBEVENT_MINIMUM = @LIBEVENT_MINIMUM@
 LIBM = @LIBM@
 LIBNATPMP_CFLAGS = @LIBNATPMP_CFLAGS@
 LIBNATPMP_LIBS = @LIBNATPMP_LIBS@
-LIBNATPMP_LIBS_QT = @LIBNATPMP_LIBS_QT@
+LIBNATPMP_LIBS_QMAKE = @LIBNATPMP_LIBS_QMAKE@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIBUPNP_CFLAGS = @LIBUPNP_CFLAGS@
 LIBUPNP_LIBS = @LIBUPNP_LIBS@
-LIBUPNP_LIBS_QT = @LIBUPNP_LIBS_QT@
+LIBUPNP_LIBS_QMAKE = @LIBUPNP_LIBS_QMAKE@
 LIBUTP_CFLAGS = @LIBUTP_CFLAGS@
 LIBUTP_LIBS = @LIBUTP_LIBS@
-LIBUTP_LIBS_QT = @LIBUTP_LIBS_QT@
+LIBUTP_LIBS_QMAKE = @LIBUTP_LIBS_QMAKE@
 LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
@@ -420,8 +414,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 transmissionlocaledir = @transmissionlocaledir@
 AM_CPPFLAGS = -I$(srcdir)/include
-noinst_LIBRARIES = libb64.a
-libb64_a_SOURCES = src/cdecode.c src/cencode.c
+noinst_LTLIBRARIES = libb64.la
+libb64_la_SOURCES = src/cdecode.c src/cencode.c
 noinst_HEADERS = include/b64/ccommon.h include/b64/cdecode.h include/b64/cencode.h include/b64/decode.h include/b64/encode.h
 EXTRA_DIST = \
 	     AUTHORS.md \
@@ -471,33 +465,38 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 
-clean-noinstLIBRARIES:
-	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; \
+	locs=`for p in $$list; do echo $$p; done | \
+	      sed 's|^[^/]*$$|.|; s|/[^/]*$$||; s|$$|/so_locations|' | \
+	      sort -u`; \
+	test -z "$$locs" || { \
+	  echo rm -f $${locs}; \
+	  rm -f $${locs}; \
+	}
 src/$(am__dirstamp):
 	@$(MKDIR_P) src
 	@: > src/$(am__dirstamp)
 src/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/$(DEPDIR)
 	@: > src/$(DEPDIR)/$(am__dirstamp)
-src/cdecode.$(OBJEXT): src/$(am__dirstamp) \
-	src/$(DEPDIR)/$(am__dirstamp)
-src/cencode.$(OBJEXT): src/$(am__dirstamp) \
-	src/$(DEPDIR)/$(am__dirstamp)
+src/cdecode.lo: src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/cencode.lo: src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
 
-libb64.a: $(libb64_a_OBJECTS) $(libb64_a_DEPENDENCIES) $(EXTRA_libb64_a_DEPENDENCIES) 
-	$(AM_V_at)-rm -f libb64.a
-	$(AM_V_AR)$(libb64_a_AR) libb64.a $(libb64_a_OBJECTS) $(libb64_a_LIBADD)
-	$(AM_V_at)$(RANLIB) libb64.a
+libb64.la: $(libb64_la_OBJECTS) $(libb64_la_DEPENDENCIES) $(EXTRA_libb64_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(LINK)  $(libb64_la_OBJECTS) $(libb64_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f src/*.$(OBJEXT)
+	-rm -f src/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/cdecode.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/cencode.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/cdecode.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/cencode.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -534,6 +533,7 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf src/.libs src/_libs
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -621,7 +621,7 @@ distdir-am: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
 install: install-am
 install-exec: install-exec-am
@@ -657,12 +657,12 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-noinstLIBRARIES \
+clean-am: clean-generic clean-libtool clean-noinstLTLIBRARIES \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f src/$(DEPDIR)/cdecode.Po
-	-rm -f src/$(DEPDIR)/cencode.Po
+		-rm -f src/$(DEPDIR)/cdecode.Plo
+	-rm -f src/$(DEPDIR)/cencode.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -708,8 +708,8 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f src/$(DEPDIR)/cdecode.Po
-	-rm -f src/$(DEPDIR)/cencode.Po
+		-rm -f src/$(DEPDIR)/cdecode.Plo
+	-rm -f src/$(DEPDIR)/cencode.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -731,7 +731,7 @@ uninstall-am:
 .MAKE: install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am am--depfiles check check-am clean \
-	clean-generic clean-libtool clean-noinstLIBRARIES \
+	clean-generic clean-libtool clean-noinstLTLIBRARIES \
 	cscopelist-am ctags ctags-am distclean distclean-compile \
 	distclean-generic distclean-libtool distclean-tags distdir dvi \
 	dvi-am html html-am info info-am install install-am \
